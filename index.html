@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GG TECH</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('bg-ggtech.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #00f7ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      padding: 10vh 5vw;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.2em;
+      text-shadow: 0 0 10px #00f7ff;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 1.5em;
+      color: #aefeff;
+    }
+
+    .btn {
+      margin-top: 2em;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background: #00f7ff;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #00f7ff;
+    }
+
+    .btn:hover {
+      background: #0cf;
+      transform: scale(1.05);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GG TECH</h1>
+    <h2>Suporte Técnico e Segurança em TI</h2>
+    <button class="btn" onclick="alert('Em breve mais novidades!')">Saiba Mais</button>
+  </div>
+  <footer>
+    Contato: (11) 999070361 • gc.guilcamargo@gmail.com
+  </footer>
+</body>
+</html>
