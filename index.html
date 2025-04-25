@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('fundo-tela-dg.png') no-repeat center center fixed;
+      background: url('bg-ggtech.png') no-repeat center center fixed;
       background-size: cover;
       color: #00f7ff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,6 +21,11 @@
       to { opacity: 1; }
     }
 
+    @keyframes slideUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
     .container {
       padding: 10vh 5vw;
     }
@@ -30,12 +34,14 @@
       font-size: 3em;
       margin-bottom: 0.2em;
       text-shadow: 0 0 10px #00f7ff;
+      animation: slideUp 1s ease-out;
     }
 
     h2 {
       font-weight: 300;
       font-size: 1.5em;
       color: #aefeff;
+      animation: slideUp 1.5s ease-out;
     }
 
     .btn {
@@ -49,11 +55,70 @@
       cursor: pointer;
       transition: 0.3s;
       box-shadow: 0 0 15px #00f7ff;
+      animation: slideUp 2s ease-out;
     }
 
     .btn:hover {
       background: #0cf;
       transform: scale(1.05);
+    }
+
+    .page {
+      display: none;
+      padding: 5vh 5vw;
+    }
+
+    .active {
+      display: block;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .services-list {
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00f7ff;
+      animation: slideUp 1s ease-out;
+    }
+
+    .services-list h3 {
+      text-align: center;
+      color: #aefeff;
+    }
+
+    .services-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .services-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #00f7ff44;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .contact-buttons a {
+      text-decoration: none;
+      padding: 10px 20px;
+      background: #00f7ff;
+      color: #000;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #00f7ff;
+      transition: transform 0.3s;
+    }
+
+    .contact-buttons a:hover {
+      transform: scale(1.1);
+      background: #0cf;
     }
 
     footer {
@@ -66,13 +131,43 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="home">
     <h1>GG TECH</h1>
     <h2>Suporte Técnico e Segurança em TI</h2>
-    <button class="btn" onclick="window.location.href='servicos.html'">Saiba Mais</button>
+    <button class="btn" onclick="showServices()">Saiba Mais</button>
   </div>
+
+  <div class="page" id="services">
+    <div class="services-list">
+      <h3>Nossos Serviços</h3>
+      <ul>
+        <li>Análise de vulnerabilidade</li>
+        <li>Consultoria de segurança</li>
+        <li>Suporte remoto</li>
+        <li>Sistemas de monitoramento 24 horas</li>
+        <li>Suporte em geral para qualquer erro</li>
+      </ul>
+      <div class="contact-buttons">
+        <a href="https://wa.me/5511999070361" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/guilmargo" target="_blank">Instagram</a>
+        <a href="mailto:gc.guilcamargo@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+
   <footer>
     Contato: (11) 999070361 • gc.guilcamargo@gmail.com
+  </footer>
+
+  <script>
+    function showServices() {
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('services').classList.add('active');
+    }
+  </script>
+</body>
+</html>
+
   </footer>
 </body>
 </html>
