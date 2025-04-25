@@ -13,6 +13,7 @@
       color: #00f7ff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
+      transition: background 1s ease;
     }
 
     body.servicos-ativo {
@@ -21,48 +22,89 @@
     }
 
     .fade {
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      will-change: opacity, transform;
-    }
-
-    .hidden {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 100vh;
+      transition: all 0.8s ease;
       opacity: 0;
+      transform: scale(1.05) translateY(30px);
+      filter: blur(8px);
       pointer-events: none;
-      transform: translateY(20px);
+      z-index: 1;
     }
 
     .visible {
       opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
       pointer-events: auto;
-      transform: translateY(0);
+      z-index: 10;
     }
 
     .container, .servicos {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      min-height: 100vh;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 10vh 5vw;
       box-sizing: border-box;
     }
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.2em;
-      text-shadow: 0 0 10px #00f7ff;
-      animation: fadeInUp 1s ease forwards;
+    .content-box {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px #00f7ff80;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      animation: slideIn 1s ease;
     }
 
-    h2, h3 {
-      font-weight: 300;
+    h1, h2, h3 {
+      margin: 0.5em 0;
+      text-shadow: 0 0 10px #00f7ff;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #00f7ff;
+      animation: typing 3s steps(40, end), blink 0.8s step-end infinite;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    h2 {
+      font-size: 1.5em;
       color: #aefeff;
-      animation: fadeInUp 1.2s ease forwards;
+      animation-delay: 0.5s;
     }
 
     h3 {
       font-size: 1.2em;
-      margin-top: 0.5em;
+      color: #8dfdff;
+      animation-delay: 1s;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
     .btn, .voltar-btn, .contato-btns button {
@@ -74,36 +116,26 @@
       background: #00f7ff;
       color: #000;
       cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 15px #00f7ff;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff50;
     }
 
     .btn:hover, .voltar-btn:hover, .contato-btns button:hover {
       background: #0cf;
-      transform: scale(1.05);
-    }
-
-    .servicos {
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 20px;
-      box-shadow: 0 0 25px #00f7ff99;
-      margin-top: 10vh;
-    }
-
-    .servicos h2 {
-      font-size: 2em;
-      margin-bottom: 1em;
+      transform: scale(1.08);
     }
 
     .servicos ul {
       list-style: none;
       padding: 0;
+      margin: 1.5em 0;
       font-size: 1.2em;
       line-height: 1.8;
+      color: #e0ffff;
     }
 
     .contato-btns {
-      margin-top: 3em;
+      margin-top: 2.5em;
     }
 
     footer {
@@ -115,48 +147,41 @@
       text-align: center;
       z-index: 1000;
     }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Página inicial -->
+  <!-- Página Inicial -->
   <div class="container fade visible" id="inicio">
-    <h1>GG TECH</h1>
-    <h2>Suporte Técnico e Segurança em TI</h2>
-    <h3>A solução antes de você falar, "agora já era"</h3>
-    <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
+    <div class="content-box">
+      <h1>GG TECH</h1>
+      <h2>Suporte Técnico e Segurança em TI</h2>
+      <h3>A solução antes de você falar, "agora já era"</h3>
+      <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
+    </div>
   </div>
 
-  <!-- Página de serviços -->
-  <div class="servicos fade hidden" id="servicos">
-    <h2>Serviços Oferecidos</h2>
-    <ul>
-      <li>Análise de Vulnerabilidade</li>
-      <li>Consultoria de Segurança</li>
-      <li>Suporte Remoto</li>
-      <li>Sistemas de Monitoramento 24 Horas</li>
-      <li>Formatação, Backup e Restauração</li>
-      <li>Remoção de Vírus e Otimização</li>
-      <li>Reparo em Windows e Drivers</li>
-    </ul>
+  <!-- Página de Serviços -->
+  <div class="container fade" id="servicos">
+    <div class="content-box">
+      <h2>Serviços Oferecidos</h2>
+      <ul>
+        <li>Análise de Vulnerabilidade</li>
+        <li>Consultoria de Segurança</li>
+        <li>Suporte Remoto</li>
+        <li>Sistemas de Monitoramento 24 Horas</li>
+        <li>Formatação, Backup e Restauração</li>
+        <li>Remoção de Vírus e Otimização</li>
+        <li>Reparo em Windows e Drivers</li>
+      </ul>
 
-    <div class="contato-btns">
-      <button onclick="window.open('https://wa.me/5511999070361', '_blank')">WhatsApp</button>
-      <button onclick="window.open('https://www.instagram.com/gui___2003', '_blank')">Instagram</button>
-      <button onclick="window.location.href='mailto:gc.guilcamargo@gmail.com'">Email</button>
+      <div class="contato-btns">
+        <button onclick="window.open('https://wa.me/5511999070361', '_blank')">WhatsApp</button>
+        <button onclick="window.open('https://www.instagram.com/gui___2003', '_blank')">Instagram</button>
+        <button onclick="window.location.href='mailto:gc.guilcamargo@gmail.com'">Email</button>
+      </div>
+
+      <button class="voltar-btn" onclick="voltarInicio()">Voltar</button>
     </div>
-
-    <button class="voltar-btn" onclick="voltarInicio()">Voltar</button>
   </div>
 
   <footer>
@@ -169,22 +194,20 @@
 
     function mostrarServicos() {
       inicio.classList.remove('visible');
-      inicio.classList.add('hidden');
       setTimeout(() => {
-        servicos.classList.remove('hidden');
+        inicio.classList.add('fade');
         servicos.classList.add('visible');
         document.body.classList.add('servicos-ativo');
-      }, 300);
+      }, 400);
     }
 
     function voltarInicio() {
       servicos.classList.remove('visible');
-      servicos.classList.add('hidden');
       setTimeout(() => {
-        inicio.classList.remove('hidden');
+        servicos.classList.add('fade');
         inicio.classList.add('visible');
         document.body.classList.remove('servicos-ativo');
-      }, 300);
+      }, 400);
     }
   </script>
 </body>
