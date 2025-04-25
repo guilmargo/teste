@@ -8,11 +8,10 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('bg-ggtech.png') no-repeat center center fixed;
+      background: url('fundo-tela-dg.png') no-repeat center center fixed;
       background-size: cover;
       color: #00f7ff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
       animation: fadeIn 2s ease-in;
     }
 
@@ -21,27 +20,21 @@
       to { opacity: 1; }
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(100px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
     .container {
       padding: 10vh 5vw;
+      text-align: center;
     }
 
     h1 {
       font-size: 3em;
       margin-bottom: 0.2em;
       text-shadow: 0 0 10px #00f7ff;
-      animation: slideUp 1s ease-out;
     }
 
     h2 {
       font-weight: 300;
       font-size: 1.5em;
       color: #aefeff;
-      animation: slideUp 1.5s ease-out;
     }
 
     .btn {
@@ -55,70 +48,11 @@
       cursor: pointer;
       transition: 0.3s;
       box-shadow: 0 0 15px #00f7ff;
-      animation: slideUp 2s ease-out;
     }
 
     .btn:hover {
       background: #0cf;
       transform: scale(1.05);
-    }
-
-    .page {
-      display: none;
-      padding: 5vh 5vw;
-    }
-
-    .active {
-      display: block;
-      animation: fadeIn 1s ease-in;
-    }
-
-    .services-list {
-      text-align: left;
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #00f7ff;
-      animation: slideUp 1s ease-out;
-    }
-
-    .services-list h3 {
-      text-align: center;
-      color: #aefeff;
-    }
-
-    .services-list ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .services-list li {
-      padding: 10px 0;
-      border-bottom: 1px solid #00f7ff44;
-    }
-
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .contact-buttons a {
-      text-decoration: none;
-      padding: 10px 20px;
-      background: #00f7ff;
-      color: #000;
-      border-radius: 20px;
-      box-shadow: 0 0 10px #00f7ff;
-      transition: transform 0.3s;
-    }
-
-    .contact-buttons a:hover {
-      transform: scale(1.1);
-      background: #0cf;
     }
 
     footer {
@@ -127,31 +61,80 @@
       width: 100%;
       color: #ccc;
       font-size: 0.9em;
+      text-align: center;
+    }
+
+    .servicos {
+      display: none;
+      padding: 5vh 5vw;
+      animation: fadeIn 1s ease-in;
+      max-width: 800px;
+      margin: 10vh auto;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 25px #00f7ff99;
+      text-align: center;
+    }
+
+    .servicos h2 {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    .servicos ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.2em;
+      line-height: 1.8;
+    }
+
+    .contato-btns {
+      margin-top: 3em;
+    }
+
+    .contato-btns button {
+      margin: 0 10px;
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      background-color: #00f7ff;
+      color: #000;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .contato-btns button:hover {
+      transform: scale(1.1);
+      background-color: #0cf;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="home">
+  <div class="container" id="inicio">
     <h1>GG TECH</h1>
     <h2>Suporte Técnico e Segurança em TI</h2>
-    <button class="btn" onclick="showServices()">Saiba Mais</button>
+    <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
   </div>
 
-  <div class="page" id="services">
-    <div class="services-list">
-      <h3>Nossos Serviços</h3>
-      <ul>
-        <li>Análise de vulnerabilidade</li>
-        <li>Consultoria de segurança</li>
-        <li>Suporte remoto</li>
-        <li>Sistemas de monitoramento 24 horas</li>
-        <li>Suporte em geral para qualquer erro</li>
-      </ul>
-      <div class="contact-buttons">
-        <a href="https://wa.me/5511999070361" target="_blank">WhatsApp</a>
-        <a href="https://instagram.com/guilmargo" target="_blank">Instagram</a>
-        <a href="mailto:gc.guilcamargo@gmail.com">Email</a>
-      </div>
+  <div class="servicos" id="servicos">
+    <h2>Serviços Oferecidos</h2>
+    <ul>
+      <li>Análise de Vulnerabilidade</li>
+      <li>Consultoria de Segurança</li>
+      <li>Suporte Remoto</li>
+      <li>Sistemas de Monitoramento 24 Horas</li>
+      <li>Suporte Geral em Qualquer Erro</li>
+      <li>Formatação, Backup e Restauração</li>
+      <li>Limpeza de Vírus e Otimização</li>
+      <li>Reparo em Windows e Drivers</li>
+      <li>Instalação de Softwares</li>
+    </ul>
+
+    <div class="contato-btns">
+      <button onclick="window.open('https://wa.me/5511999070361', '_blank')">WhatsApp</button>
+      <button onclick="window.open('https://www.instagram.com/gc.guilcamargo', '_blank')">Instagram</button>
+      <button onclick="window.location.href='mailto:gc.guilcamargo@gmail.com'">Email</button>
     </div>
   </div>
 
@@ -160,14 +143,10 @@
   </footer>
 
   <script>
-    function showServices() {
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('services').classList.add('active');
+    function mostrarServicos() {
+      document.getElementById('inicio').style.display = 'none';
+      document.getElementById('servicos').style.display = 'block';
     }
   </script>
-</body>
-</html>
-
-  </footer>
 </body>
 </html>
