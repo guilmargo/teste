@@ -25,6 +25,36 @@
       to { opacity: 1; }
     }
 
+    @keyframes fadeZoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeZoomOut {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+    }
+
+    .fade-in {
+      animation: fadeZoomIn 0.5s ease forwards;
+    }
+
+    .fade-out {
+      animation: fadeZoomOut 0.4s ease forwards;
+    }
+
     .container {
       padding: 10vh 5vw;
       text-align: center;
@@ -72,7 +102,6 @@
     .servicos {
       display: none;
       padding: 5vh 5vw;
-      animation: fadeIn 1s ease-in;
       max-width: 800px;
       margin: 10vh auto;
       background: rgba(0, 0, 0, 0.7);
@@ -118,10 +147,10 @@
   </style>
 </head>
 <body>
-  <div class="container" id="inicio">
+  <div class="container fade-in" id="inicio">
     <h1>GG TECH</h1>
     <h2>Suporte Técnico e Segurança em TI</h2>
-<h3>A solução antes de voce falar, ''agora ja era''</h3>
+    <h3>A solução antes de você falar, "agora já era"</h3>
     <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
   </div>
 
@@ -152,15 +181,33 @@
 
   <script>
     function mostrarServicos() {
-      document.getElementById('inicio').style.display = 'none';
-      document.getElementById('servicos').style.display = 'block';
-      document.body.classList.add('servicos-ativo');
+      const inicio = document.getElementById('inicio');
+      const servicos = document.getElementById('servicos');
+
+      inicio.classList.add('fade-out');
+
+      setTimeout(() => {
+        inicio.style.display = 'none';
+        servicos.style.display = 'block';
+        servicos.classList.add('fade-in');
+        document.body.classList.add('servicos-ativo');
+      }, 400);
     }
 
     function voltarInicio() {
-      document.getElementById('servicos').style.display = 'none';
-      document.getElementById('inicio').style.display = 'block';
-      document.body.classList.remove('servicos-ativo');
+      const inicio = document.getElementById('inicio');
+      const servicos = document.getElementById('servicos');
+
+      servicos.classList.remove('fade-in');
+      servicos.classList.add('fade-out');
+
+      setTimeout(() => {
+        servicos.style.display = 'none';
+        inicio.style.display = 'block';
+        inicio.classList.remove('fade-out');
+        inicio.classList.add('fade-in');
+        document.body.classList.remove('servicos-ativo');
+      }, 400);
     }
   </script>
 </body>
