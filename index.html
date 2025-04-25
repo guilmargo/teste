@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GG TECH</title>
   <style>
     body {
@@ -12,7 +12,7 @@
       background-size: cover;
       color: #00f7ff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      animation: fadeIn 2s ease-in;
+      overflow-x: hidden;
     }
 
     body.servicos-ativo {
@@ -20,59 +20,52 @@
       background-size: cover;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .fade {
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      will-change: opacity, transform;
     }
 
-    @keyframes fadeZoomIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
     }
 
-    @keyframes fadeZoomOut {
-      from {
-        opacity: 1;
-        transform: scale(1);
-      }
-      to {
-        opacity: 0;
-        transform: scale(0.9);
-      }
+    .visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
-    .fade-in {
-      animation: fadeZoomIn 0.5s ease forwards;
-    }
-
-    .fade-out {
-      animation: fadeZoomOut 0.4s ease forwards;
-    }
-
-    .container {
-      padding: 10vh 5vw;
+    .container, .servicos {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      min-height: 100vh;
       text-align: center;
+      padding: 10vh 5vw;
+      box-sizing: border-box;
     }
 
     h1 {
       font-size: 3em;
       margin-bottom: 0.2em;
       text-shadow: 0 0 10px #00f7ff;
+      animation: fadeInUp 1s ease forwards;
     }
 
-    h2 {
+    h2, h3 {
       font-weight: 300;
-      font-size: 1.5em;
       color: #aefeff;
+      animation: fadeInUp 1.2s ease forwards;
     }
 
-    .btn {
+    h3 {
+      font-size: 1.2em;
+      margin-top: 0.5em;
+    }
+
+    .btn, .voltar-btn, .contato-btns button {
       margin-top: 2em;
       padding: 15px 30px;
       font-size: 1.2em;
@@ -81,33 +74,20 @@
       background: #00f7ff;
       color: #000;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s;
       box-shadow: 0 0 15px #00f7ff;
     }
 
-    .btn:hover {
+    .btn:hover, .voltar-btn:hover, .contato-btns button:hover {
       background: #0cf;
       transform: scale(1.05);
     }
 
-    footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      color: #ccc;
-      font-size: 0.9em;
-      text-align: center;
-    }
-
     .servicos {
-      display: none;
-      padding: 5vh 5vw;
-      max-width: 800px;
-      margin: 10vh auto;
       background: rgba(0, 0, 0, 0.7);
       border-radius: 20px;
       box-shadow: 0 0 25px #00f7ff99;
-      text-align: center;
+      margin-top: 10vh;
     }
 
     .servicos h2 {
@@ -126,35 +106,39 @@
       margin-top: 3em;
     }
 
-    .contato-btns button,
-    .voltar-btn {
-      margin: 10px;
-      padding: 12px 24px;
-      font-size: 1em;
-      border: none;
-      border-radius: 30px;
-      background-color: #00f7ff;
-      color: #000;
-      cursor: pointer;
-      transition: transform 0.3s;
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      color: #ccc;
+      font-size: 0.9em;
+      text-align: center;
+      z-index: 1000;
     }
 
-    .contato-btns button:hover,
-    .voltar-btn:hover {
-      transform: scale(1.1);
-      background-color: #0cf;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container fade-in" id="inicio">
+  <!-- Página inicial -->
+  <div class="container fade visible" id="inicio">
     <h1>GG TECH</h1>
     <h2>Suporte Técnico e Segurança em TI</h2>
     <h3>A solução antes de você falar, "agora já era"</h3>
     <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
   </div>
 
-  <div class="servicos" id="servicos">
+  <!-- Página de serviços -->
+  <div class="servicos fade hidden" id="servicos">
     <h2>Serviços Oferecidos</h2>
     <ul>
       <li>Análise de Vulnerabilidade</li>
@@ -180,34 +164,27 @@
   </footer>
 
   <script>
+    const inicio = document.getElementById('inicio');
+    const servicos = document.getElementById('servicos');
+
     function mostrarServicos() {
-      const inicio = document.getElementById('inicio');
-      const servicos = document.getElementById('servicos');
-
-      inicio.classList.add('fade-out');
-
+      inicio.classList.remove('visible');
+      inicio.classList.add('hidden');
       setTimeout(() => {
-        inicio.style.display = 'none';
-        servicos.style.display = 'block';
-        servicos.classList.add('fade-in');
+        servicos.classList.remove('hidden');
+        servicos.classList.add('visible');
         document.body.classList.add('servicos-ativo');
-      }, 400);
+      }, 300);
     }
 
     function voltarInicio() {
-      const inicio = document.getElementById('inicio');
-      const servicos = document.getElementById('servicos');
-
-      servicos.classList.remove('fade-in');
-      servicos.classList.add('fade-out');
-
+      servicos.classList.remove('visible');
+      servicos.classList.add('hidden');
       setTimeout(() => {
-        servicos.style.display = 'none';
-        inicio.style.display = 'block';
-        inicio.classList.remove('fade-out');
-        inicio.classList.add('fade-in');
+        inicio.classList.remove('hidden');
+        inicio.classList.add('visible');
         document.body.classList.remove('servicos-ativo');
-      }, 400);
+      }, 300);
     }
   </script>
 </body>
