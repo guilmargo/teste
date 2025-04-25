@@ -5,14 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GG TECH</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #00f7ff;
+      overflow: hidden;
       background: url('fundo-tela-dg.png') no-repeat center center fixed;
       background-size: cover;
-      color: #00f7ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
       transition: background 1s ease;
     }
 
@@ -23,43 +28,37 @@
 
     .fade {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
-      min-height: 100vh;
-      transition: all 0.8s ease;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       opacity: 0;
-      transform: scale(1.05) translateY(30px);
+      transform: translate(-50%, -50%) scale(1.05);
       filter: blur(8px);
+      transition: all 0.8s ease;
       pointer-events: none;
-      z-index: 1;
+      padding: 40px 20px;
     }
 
     .visible {
       opacity: 1;
-      transform: scale(1) translateY(0);
       filter: blur(0);
+      transform: translate(-50%, -50%) scale(1);
       pointer-events: auto;
       z-index: 10;
     }
 
-    .container, .servicos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10vh 5vw;
-      box-sizing: border-box;
-    }
-
     .content-box {
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.7);
       padding: 60px 40px;
       border-radius: 20px;
       box-shadow: 0 0 40px #00f7ff80;
-      max-width: 700px;
-      width: 100%;
       text-align: center;
-      animation: slideIn 1s ease;
+      width: 100%;
     }
 
     h1, h2, h3 {
@@ -72,7 +71,7 @@
     }
 
     h2 {
-      font-size: 1.5em;
+      font-size: 1.6em;
       color: #aefeff;
     }
 
@@ -81,43 +80,80 @@
       color: #8dfdff;
     }
 
-    .typing {
+    .blinker {
+      animation: pulse 2.5s ease-in-out infinite;
       display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid #00f7ff;
-      animation: typing 3s steps(40, end), blink 1.5s step-end infinite;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+    @keyframes pulse {
+      0%, 100% { opacity: 0; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
     }
 
-    @keyframes blink {
-      0%, 100% { border-color: transparent }
-      50% { border-color: #00f7ff }
-    }
-
-    .btn, .voltar-btn, .contato-btns button {
+    .btn-matrix {
       margin-top: 2em;
-      padding: 15px 30px;
+      padding: 15px 40px;
       font-size: 1.2em;
       border: none;
       border-radius: 30px;
       background: #00f7ff;
       color: #000;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px #00f7ff, 0 0 30px #00f7ff50;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s, transform 0.3s;
+      box-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff44, 0 0 30px #00f7ff22;
     }
 
-    .btn:hover, .voltar-btn:hover, .contato-btns button:hover {
-      background: #0cf;
+    .btn-matrix::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(115deg, transparent, #0ff, transparent);
+      animation: glitch 2s linear infinite;
+    }
+
+    .btn-matrix:hover {
       transform: scale(1.08);
+      background: #0cf;
     }
 
-    .servicos ul {
+    @keyframes glitch {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(10px, 10px);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+      }
+    }
+
+    .contato-btns button, .voltar-btn {
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      background-color: #00f7ff;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #00f7ff;
+    }
+
+    .contato-btns button:hover, .voltar-btn:hover {
+      transform: scale(1.08);
+      background-color: #0cf;
+    }
+
+    ul {
       list-style: none;
       padding: 0;
       margin: 1.5em 0;
@@ -143,19 +179,19 @@
 </head>
 <body>
   <!-- Página Inicial -->
-  <div class="container fade visible" id="inicio">
+  <div class="fade visible" id="inicio">
     <div class="content-box">
-      <h1 class="typing">GG TECH 👾</h1>
-      <h2 class="typing">Suporte Técnico e Segurança em TI</h2>
-      <h3 class="typing">A solução antes de você falar, "agora já era"</h3>
-      <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
+      <h1>GG TECH <span class="blinker">👾</span></h1>
+      <h2>Suporte Técnico e Segurança em TI</h2>
+      <h3>A solução antes de você falar, "agora já era"</h3>
+      <button class="btn-matrix" onclick="mostrarServicos()">Saiba Mais</button>
     </div>
   </div>
 
   <!-- Página de Serviços -->
-  <div class="container fade" id="servicos">
+  <div class="fade" id="servicos">
     <div class="content-box">
-      <h2 class="typing">Serviços Oferecidos</h2>
+      <h2>Serviços Oferecidos</h2>
       <ul>
         <li>Análise de Vulnerabilidade</li>
         <li>Consultoria de Segurança</li>
@@ -170,5 +206,35 @@
         <button onclick="window.open('https://wa.me/5511999070361', '_blank')">WhatsApp</button>
         <button onclick="window.open('https://www.instagram.com/gui___2003', '_blank')">Instagram</button>
         <button onclick="window.location.href='mailto:gc.guilcamargo@gmail.com'">Email</button>
+      </div>
 
-::contentReference[oaicite:10]{index=10}
+      <button class="voltar-btn" onclick="voltarInicio()">Voltar</button>
+    </div>
+  </div>
+
+  <footer>
+    Contato: (11) 999070361 • gc.guilcamargo@gmail.com
+  </footer>
+
+  <script>
+    const inicio = document.getElementById('inicio');
+    const servicos = document.getElementById('servicos');
+
+    function mostrarServicos() {
+      inicio.classList.remove('visible');
+      setTimeout(() => {
+        servicos.classList.add('visible');
+        document.body.classList.add('servicos-ativo');
+      }, 500);
+    }
+
+    function voltarInicio() {
+      servicos.classList.remove('visible');
+      setTimeout(() => {
+        inicio.classList.add('visible');
+        document.body.classList.remove('servicos-ativo');
+      }, 500);
+    }
+  </script>
+</body>
+</html>
