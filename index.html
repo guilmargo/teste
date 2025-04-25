@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GG TECH</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('fundo-tela-dg.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #00f7ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      animation: fadeIn 2s ease-in;
-    }
+   body {
+  margin: 0;
+  padding: 0;
+  color: #00f7ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 2s ease-in;
+}
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -21,9 +19,12 @@
     }
 
     .container {
-      padding: 10vh 5vw;
-      text-align: center;
-    }
+  padding: 10vh 5vw;
+  text-align: center;
+  background: url('fundo-tela-dg.png') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
 
     h1 {
       font-size: 3em;
@@ -64,17 +65,19 @@
       text-align: center;
     }
 
-    .servicos {
-      display: none;
-      padding: 5vh 5vw;
-      animation: fadeIn 1s ease-in;
-      max-width: 800px;
-      margin: 10vh auto;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 20px;
-      box-shadow: 0 0 25px #00f7ff99;
-      text-align: center;
-    }
+   .servicos {
+  display: none;
+  padding: 5vh 5vw;
+  animation: fadeIn 1s ease-in;
+  max-width: 800px;
+  margin: 10vh auto;
+  background: url('dg.morto.png') no-repeat center center fixed; /* <- Aqui o segundo fundo */
+  background-size: cover;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #00f7ff99;
+  text-align: center;
+  color: #fff; /* ajuste a cor do texto se necessário */
+}
 
     .servicos h2 {
       font-size: 2em;
