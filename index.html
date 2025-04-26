@@ -17,25 +17,14 @@
       font-family: 'Share Tech Mono', monospace;
       color: #00f7ff;
       background: url('fundo-tela-dg.png') no-repeat center center fixed;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: fixed;
+      background-size: cover;
       overflow-x: hidden;
       transition: background 0.5s ease-in-out;
     }
 
-    @media (min-width: 768px) {
-      body {
-        background-size: cover;
-      }
-    }
-
     body.servicos-ativo {
       background: url('dg.morto.png') no-repeat center center fixed;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center center;
+      background-size: cover;
     }
 
     .container,
@@ -131,6 +120,7 @@
       list-style: none;
       font-size: 1.2em;
       line-height: 2em;
+      padding: 0;
     }
 
     .servicos li {
