@@ -19,12 +19,34 @@
       background: url('fundo-tela-dg.png') no-repeat center center fixed;
       background-size: cover;
       overflow-x: hidden;
-      transition: background 0.5s ease-in-out;
     }
 
     body.servicos-ativo {
       background: url('dg.morto.png') no-repeat center center fixed;
       background-size: cover;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 0, 0.1),
+        rgba(0, 255, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      z-index: -1;
+      animation: glitchBg 5s linear infinite;
+    }
+
+    @keyframes glitchBg {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100px; }
     }
 
     .container, .servicos {
@@ -54,8 +76,9 @@
 
     h2, h3 {
       font-size: 1.5em;
-      color: #aefeff;
+      color: #fff700;
       margin-top: 10px;
+      text-shadow: 0 0 10px black;
     }
 
     h3 span.blink {
@@ -118,6 +141,14 @@
       list-style: none;
       font-size: 1.2em;
       line-height: 2em;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .servicos ul li {
+      color: #ffffff;
+      text-shadow: 0 0 5px black;
     }
 
     .contato-btns button,
@@ -199,17 +230,17 @@
 
     function mostrarServicos() {
       inicio.classList.add('hidden');
-      document.body.classList.add('servicos-ativo');
       setTimeout(() => {
         servicos.classList.remove('hidden');
+        document.body.classList.add('servicos-ativo');
       }, 500);
     }
 
     function voltarInicio() {
       servicos.classList.add('hidden');
-      document.body.classList.remove('servicos-ativo');
       setTimeout(() => {
         inicio.classList.remove('hidden');
+        document.body.classList.remove('servicos-ativo');
       }, 500);
     }
   </script>
