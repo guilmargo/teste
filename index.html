@@ -108,10 +108,21 @@
       margin: 0 auto;
     }
 
+    .servicos h2 {
+      margin-bottom: 20px;
+    }
+
     .servicos ul {
       list-style: none;
       font-size: 1.2em;
-      line-height: 2em;
+      line-height: 1.8em;
+      padding: 0;
+    }
+
+    .servicos li {
+      margin-bottom: 15px;
+      color: #fff700;
+      text-shadow: 0 0 10px black;
     }
 
     .contato-btns button,
@@ -161,14 +172,14 @@
       Suporte Técnico e Segurança em TI
     </h2>
     <h3 style="color: #fff700; text-shadow: 0 0 10px black;">
-       <h3>A solução antes de você falar, "agora já era" <span class="blink">👾</span></h3>
+      A solução antes de você falar, "agora já era" <span class="blink">👾</span>
     </h3>
     <button class="btn" onclick="mostrarServicos()">Saiba Mais</button>
   </div>
 
   <div class="servicos hidden" id="servicos">
     <h2>Serviços Oferecidos</h2>
-   <h3 style="color: #fff700; text-shadow: 0 0 10px black;">
+    <ul>
       <li>Análise de Vulnerabilidade</li>
       <li>Consultoria de Segurança</li>
       <li>Suporte Remoto</li>
@@ -176,7 +187,7 @@
       <li>Formatação, Backup e Restauração</li>
       <li>Remoção de Vírus e Otimização</li>
       <li>Reparo em Windows e Drivers</li>
-     </h3>
+    </ul>
 
     <div class="contato-btns">
       <button onclick="window.open('https://wa.me/5511999070361', '_blank')">WhatsApp</button>
@@ -188,7 +199,7 @@
   </div>
 
   <footer>
-   &copy; 2025 GG TECH - Todos os direitos reservados.
+    &copy; 2025 GG TECH - Todos os direitos reservados.
   </footer>
 
   <script>
